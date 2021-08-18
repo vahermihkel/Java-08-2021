@@ -20,43 +20,54 @@ public class Main {
 
 //        int i = 1;
 
-        if (trueV6iFalse) {
-            System.out.println("läksin if-i sisse");
-        } else if (kaksMiljardit < 132132) {
-            System.out.println("LÄKSIN KESKMISESSE");
-        } else if (kaksMiljardit < 13213) {
-            System.out.println("LÄKSIN KESKMISESSE");
-        } else {
-            System.out.println("läksin else-i");
-        }
+//        if (trueV6iFalse) {
+//            System.out.println("läksin if-i sisse");
+//        } else if (kaksMiljardit < 132132) {
+//            System.out.println("LÄKSIN KESKMISESSE");
+//        } else if (kaksMiljardit < 13213) {
+//            System.out.println("LÄKSIN KESKMISESSE");
+//        } else {
+//            System.out.println("läksin else-i");
+//        }
 //        System.out.println(i);
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(i);
-        }
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println(i);
+//        }
+//
+//        int i = 0;
+//        while (i < 5) {
+//            System.out.println(i);
+//            i++;
+//        }
 
-        int i = 0;
-        while (i < 5) {
-            System.out.println(i);
-            i++;
-        }
-
-        List massiiv = new ArrayList();
+        List<String> massiiv = new ArrayList<>();
         massiiv.add("adsa");
         massiiv.add("dasd");
         massiiv.add("gfdd");
         massiiv.add("qwer");
-        massiiv.remove("dasd");
-        massiiv.remove(2);
 
-        for (int j = 0; j < massiiv.size(); j++) {
-            System.out.println(massiiv.get(j));
-            System.out.println(massiiv.size());
-            System.out.println(massiiv.isEmpty());
-            System.out.println(massiiv.remove(1));
-            massiiv.clear();
-            System.out.println(massiiv);
+        List<Integer> massiiv2 = new ArrayList<>();
+        massiiv2.add(2);
+        massiiv2.add(5);
+        massiiv2.add(6);
+        massiiv2.add(10);
+
+        manipulateWithArray(massiiv);
+        manipulateWithArray(massiiv2);
+
+    }
+
+    private static void manipulateWithArray(List array) {
+        for (int j = 0; j < array.size(); j++) {
+            System.out.printf("Esimene element %s mis prinditi välja %n",array.get(j));
+            System.out.println("Esimene element " + array.get(j) + " mis prinditi välja");
+            System.out.println(array.size());
+            System.out.println(array.isEmpty());
+            System.out.println(array);
+            array.remove(array.size()-1);
+            System.out.println();
+            System.out.println();
         }
-
     }
 }

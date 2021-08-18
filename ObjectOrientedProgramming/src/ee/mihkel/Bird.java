@@ -1,18 +1,20 @@
 package ee.mihkel;
 
 public class Bird {
-    int price;
-    int age;
-    String name;
-    boolean isSold;
-    String country;
+    private int price;
+    private int age;
+    private String name;
+    private boolean isSold;
+    private String country;
+    private BirdColor birdColor;
 
-    public Bird(int price, int age, String name, String country) {
+    public Bird(int price, int age, String name, String country, BirdColor birdColor) {
         this.price = price;
         this.age = age;
         this.name = name;
         this.isSold = false;
         this.country = country;
+        this.birdColor = birdColor;
     }
 
     void setAsSold() {
@@ -27,6 +29,7 @@ public class Bird {
                 ", name='" + name + '\'' +
                 ", isSold=" + isSold +
                 ", country='" + country + '\'' +
+                ", birdColor=" + birdColor +
                 '}';
     }
 }
