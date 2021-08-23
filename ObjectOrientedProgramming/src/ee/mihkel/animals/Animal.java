@@ -1,34 +1,42 @@
-package ee.mihkel;
+package ee.mihkel.animals;
 
-// encapsulation
+import ee.mihkel.Sellable;
 
-public class Animal {
+public abstract class Animal implements Sellable {
     private int price;
     private int age;
     private String name;
-    private boolean isPuppy;
     private boolean isSold;
-    private AnimalType animalType;
 
-    public Animal(int _price, int _age, String _name, AnimalType _animalType) {
-        this.price = _price;
-        this.age = _age;
-        this.name = _name;
-        this.isPuppy = this.age < 2;
+    public Animal(int price, int age, String name) {
+        this.price = price;
+        this.age = age;
+        this.name = name;
         this.isSold = false;
-        this.animalType = _animalType;
     }
 
     public int getPrice() {
         return price;
     }
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public boolean isSold() {
         return isSold;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public void setAsSold() {
@@ -41,7 +49,6 @@ public class Animal {
                 "price=" + price +
                 ", age=" + age +
                 ", name='" + name + '\'' +
-                ", isPuppy=" + isPuppy +
                 ", isSold=" + isSold +
                 '}';
     }
