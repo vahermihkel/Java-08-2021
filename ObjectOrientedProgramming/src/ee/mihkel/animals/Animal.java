@@ -2,6 +2,8 @@ package ee.mihkel.animals;
 
 import ee.mihkel.Sellable;
 
+import java.util.Scanner;
+
 public abstract class Animal implements Sellable {
     private int price;
     private int age;
@@ -12,6 +14,13 @@ public abstract class Animal implements Sellable {
         this.price = price;
         this.age = age;
         this.name = name;
+        this.isSold = false;
+    }
+
+    public Animal(int price, int age) {
+        this.price = price;
+        this.age = age;
+        this.name = "N/A";
         this.isSold = false;
     }
 
@@ -35,12 +44,29 @@ public abstract class Animal implements Sellable {
         return isSold;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    protected void increaseAge() {
+//        this.age = this.age + 1;
+//        this.age += 1;
+        this.age++;
     }
 
     public void setAsSold() {
-        this.isSold = true;
+        Scanner scanner = new Scanner(System.in);
+        boolean isCorrect = false;
+        while (!isCorrect) {
+            System.out.println("Kas on vajalikud dokumendid esitatud?");
+            String input = scanner.nextLine();
+            if (input.equals("y")) {
+                this.isSold = true;
+                isCorrect = true;
+            } else if (input.equals("n")) {
+                System.out.println("Dokumendid esitamata, müüa ei saa!");
+                isCorrect = true;
+            } else {
+                isCorrect = false;
+                System.out.println("Sisesta 'y' või 'n' täht");
+            }
+        }
     }
 
     @Override
