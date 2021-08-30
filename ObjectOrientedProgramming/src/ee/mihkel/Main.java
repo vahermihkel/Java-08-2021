@@ -20,19 +20,7 @@ public class Main {
         Mammal tiiger = new Mammal(2000,7, "King", MammalType.TIIGER);
         Mammal rott = new Mammal(30,4, "Miki", MammalType.ROTT);
 
-        Mammal kassJunior1 = new Mammal(1,0,"Nr1", MammalType.KASS);
-        Mammal kassJunior2 = new Mammal(1,0,"Nr2", MammalType.KASS);
-
-        kass.addChild(kassJunior1, true);
-        kass.addChild(kassJunior2, false);
-
-        Mammal kassJunior3 = new Mammal(1,0,"Nr3", MammalType.KASS);
-        kass.addChild(kassJunior3, false);
-
-        kass.showChildren();
-        kass.getOneChild();
-
-        kassJunior1.addChild(kassJunior2, true);
+        MainController.createKassChildren(kass);
 
         kass.increaseAgeByOne();
 
@@ -43,30 +31,15 @@ public class Main {
 
         try {
             leevike.increaseAgeByOne();
-        } catch (Exception e) {
+        } catch (BirdAgeTooHighException e) {
             e.printStackTrace();
         }
 
-        Reptile kilpkonn = new Reptile(400,10,"Teen");
-//        kilpkonn.age = 100;
-//        kilpkonn.setAge(100);
-//        kilpkonn.name = "Teenage Ninja";
-//        kilpkonn.price = 99;
-        kilpkonn.setAsSold();
-        System.out.println(kilpkonn);
+        MainController.createKilpkonn();
 
-        kass.setPrice(200);
-
-        System.out.println(kass);
         System.out.println(koer);
-        kass.setPrice(300);
-        System.out.println(kass.getPrice());
 
-        kass.setPrice(100);
-
-        System.out.println(kass.isSold());
-        kass.setAsSold();
-        System.out.println(kass.isSold());
+        MainController.setCatPrice(kass);
 
         System.out.println(papagoi);
 
@@ -75,19 +48,9 @@ public class Main {
 
         System.out.println();
 
-        leevike.increaseFamilyCount();
-        System.out.println(leevike.getFamilyCount());
-        leevike.increaseBreedCount();
-        System.out.println(leevike.getBreedCount());
-        tihane.increaseFamilyCount();
-        System.out.println(tihane.getFamilyCount());
-        tihane.increaseBreedCount();
-        System.out.println(tihane.getBreedCount());
-        papagoi.increaseFamilyCount();
-        System.out.println(papagoi.getFamilyCount());
-        papagoi.increaseBreedCount();
-        System.out.println(papagoi.getBreedCount());
+        MainController.printBirdCounts(papagoi);
+        MainController.printBirdCounts(tihane);
+        MainController.printBirdCounts(leevike);
 
-        System.out.println(Bird.getAllBreedCount());
     }
 }

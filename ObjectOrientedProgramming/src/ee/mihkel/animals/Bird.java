@@ -12,11 +12,12 @@ public class Bird extends Animal {
         this.birdColor = birdColor;
     }
 
-    public void increaseAgeByOne() throws Exception {
+    public void increaseAgeByOne() throws BirdAgeTooHighException {
         increaseAge();
         if (getAge() > 50) {
-            throw new Exception("Vanus üle 50, viga");
+            throw new BirdAgeTooHighException("Vanus üle 50, viga");
         }
+        System.out.println("VANUS UUENDATUD");
     }
 
     public int getFamilyCount() {

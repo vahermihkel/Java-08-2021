@@ -21,6 +21,7 @@ public class Mammal extends Animal {
     private boolean isPuppy;
     private MammalType mammalType;
     private List<Mammal> children = new ArrayList<>();
+    private static int breedCount;
 
 //    constructor overloading - erinevad võimalused new Mammal loomiseks
 //    tavaliselt kasutatakse aga ainult 1 constructor klassis (all lihtsalt näide kuidas saaks)
