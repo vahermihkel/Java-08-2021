@@ -9,13 +9,15 @@ import java.util.Random;
 public abstract class Character {
     private int xCoord;
     private int yCoord;
-    private char symbol;
+    private final char symbol;
     private boolean isVisible;
+    private double health;
 
     public Character(World world, char symbol) { // super(world, 'S')
         randomiseCoordinates(world);
         this.symbol = symbol;
         this.isVisible = true;
+        this.health = 10.0;
     }
 
     protected void randomiseCoordinates(World world) {
@@ -79,5 +81,18 @@ public abstract class Character {
 
     public void setVisible(boolean visible) {
         isVisible = visible;
+    }
+
+    public double getHealth() {
+        return health;
+    }
+
+    public void takeHealth(int itemStrength) {
+//        this.health = this.health - itemStrength;
+        this.health -= itemStrength;
+    }
+
+    public void reboost() {
+        this.health = 10.0;
     }
 }

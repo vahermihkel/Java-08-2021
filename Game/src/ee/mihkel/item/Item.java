@@ -4,7 +4,7 @@ import ee.mihkel.World;
 
 import java.util.Random;
 
-public class Item {
+public abstract class Item {
     private int xCoord;
     private int yCoord;
     private char symbol;
@@ -12,12 +12,11 @@ public class Item {
     private int durability;
     private String name;
 
-    public Item(World world, int strength, int durability, String name) {
+    public Item(World world, int strength, String name) {
         this.xCoord = this.getRandomCoordinate(world.getWidth()-2);
         this.yCoord = this.getRandomCoordinate(world.getHeight()-2);
         this.symbol = 'I';
         this.strength = strength;
-        this.durability = durability;
         this.name = name;
     }
 
@@ -29,6 +28,20 @@ public class Item {
     public void increaseDurability() {
         // this.durability = this.durability + 1;
         this.durability++;
+    }
+
+    public void decreaseDurability() {
+        // this.durability = this.durability - 1;
+        this.durability--;
+    }
+
+    // polymorphism
+    public void regenerateDurability() {
+        this.durability = 1;
+    }
+
+    public void setDurability(int durability) {
+        this.durability = durability;
     }
 
     public int getxCoord() {
