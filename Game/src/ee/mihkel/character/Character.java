@@ -11,7 +11,7 @@ public abstract class Character {
     private int yCoord;
     private final char symbol;
     private boolean isVisible;
-    private double health;
+    protected double health;
 
     public Character(World world, char symbol) { // super(world, 'S')
         randomiseCoordinates(world);

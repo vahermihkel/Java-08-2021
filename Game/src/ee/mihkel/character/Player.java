@@ -4,7 +4,9 @@ import ee.mihkel.World;
 import ee.mihkel.item.Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // inheritance - pärilus ; saab kõik muutujad ja funktsioonid endasse millest extenditakse
 // 1. koodikordus (xCoord, yCoord, symbol - getxCoord(), jne)
@@ -25,7 +27,8 @@ import java.util.List;
 
 public class Player extends Character {
     private Direction direction;
-    private List<Item> itemList = new ArrayList<>();
+    private List<Item> itemList = new ArrayList<>(); // [ese1,ese2,ese3]
+    private Map<EnemyType, Integer> killedEnemies = new HashMap<>(); // [{võti:nr},{võti2:nr},{võti3:nr}]
 
     public Player(World world) {
         super(world, 'X');
@@ -56,10 +59,8 @@ public class Player extends Character {
         }
     }
 
-    public void deleteItem(Item item) {
-        System.out.println(itemList);
+    private void deleteItem(Item item) {
         this.itemList.remove(item);
-        System.out.println(itemList);
     }
 
     public void showAllItems() {
@@ -75,6 +76,10 @@ public class Player extends Character {
 
     public boolean isNoItems() {
         return itemList.isEmpty();
+    }
+
+    public Item getItemFromList(int index) {
+        return itemList.get(index-1);
     }
 
     public void move(String input, World world) {
@@ -116,7 +121,16 @@ public class Player extends Character {
         }
     }
 
-    public Item getItemFromList(int index) {
-        return itemList.get(index-1);
+    public void showKilledEnemies() {
+        if (this.killedEnemies.isEmpty()) {
+            System.out.println("Tapetud vaenlasi pole");
+        } else {
+            this.killedEnemies.forEach((key, value) -> System.out.println(key + ": " + value));
+        }
     }
+
+    public void addToKilledEnemies(EnemyType enemyType) {
+        this.killedEnemies.put(enemyType,1);
+    }
+
 }
