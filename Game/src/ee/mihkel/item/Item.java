@@ -5,23 +5,30 @@ import ee.mihkel.World;
 import java.util.Random;
 
 public abstract class Item {
-    private int xCoord;
-    private int yCoord;
-    private char symbol;
+    private final int xCoord;
+    private final int yCoord;
+    private final char symbol;
     private int strength;
     private int durability;
-    private String name;
-    private ItemType itemType;
+    private final String name;
+    private ItemType itemType = ItemType.BRONZE;
     private int level;
 
-    public Item(World world, int strength, String name) {
+    public Item(World world, int strength, String name, char symbol) {
         this.xCoord = this.getRandomCoordinate(world.getWidth()-2);
         this.yCoord = this.getRandomCoordinate(world.getHeight()-2);
-        this.symbol = 'I';
         this.strength = strength;
         this.name = name;
-        this.itemType = ItemType.BRONZE;
         this.level = 0;
+        this.symbol = symbol;
+    }
+
+    // Constructor Overloading
+    public Item(World world, String name, char symbol) {
+        this.xCoord = this.getRandomCoordinate(world.getWidth()-2);
+        this.yCoord = this.getRandomCoordinate(world.getHeight()-2);
+        this.name = name;
+        this.symbol = symbol;
     }
 
     private int getRandomCoordinate(int maxCoord) {

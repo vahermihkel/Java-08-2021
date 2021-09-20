@@ -17,7 +17,6 @@ public abstract class Character {
         randomiseCoordinates(world);
         this.symbol = symbol;
         this.isVisible = true;
-        this.health = 10.0;
     }
 
     protected void randomiseCoordinates(World world) {

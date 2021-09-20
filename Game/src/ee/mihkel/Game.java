@@ -1,16 +1,12 @@
 package ee.mihkel;
 
+import ee.mihkel.character.*;
 import ee.mihkel.character.Character;
-import ee.mihkel.character.Enemy;
-import ee.mihkel.character.Player;
-import ee.mihkel.character.QuestMaster;
-import ee.mihkel.item.Dagger;
-import ee.mihkel.item.Hammer;
-import ee.mihkel.item.Item;
-import ee.mihkel.item.Sword;
+import ee.mihkel.item.*;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Timer;
 
 public class Game {
 
@@ -39,12 +35,17 @@ public class Game {
     public static void main(String[] args) {
 	    World world = new World(6,6);
 
+	    Timer timer = new Timer();
+	    GameController.startTimer(timer);
+
 	    Player player = new Player(world);
 	    world.addCharacter(player);
 	    Enemy enemy = new Enemy(world);
 	    world.addCharacter(enemy);
 	    QuestMaster questMaster = new QuestMaster(world);
 	    world.addCharacter(questMaster);
+		Healer healer = new Healer(world);
+		world.addCharacter(healer);
 
 		Dagger dagger = new Dagger(world);
 		world.addItem(dagger);
@@ -52,6 +53,8 @@ public class Game {
 		world.addItem(hammer);
 		Sword sword = new Sword(world);
 		world.addItem(sword);
+		Teleporter teleporter = new Teleporter(world);
+		world.addItem(teleporter);
 
 		world.printMap();
 		Scanner scanner = new Scanner(System.in);
@@ -59,13 +62,21 @@ public class Game {
 		try {
 			while (!input.equals("end")) {
 				player.move(input, world);
-				GameController.checkPlayerInteraction(world, player, enemy, questMaster, dagger, hammer, sword, scanner);
+				GameController.checkPlayerInteraction(
+						world, player, enemy, questMaster, healer, dagger, hammer, sword, teleporter, scanner);
 				world.printMap();
 				input = scanner.nextLine();
 			}
+			endGame(timer, player, "Katkestasid mängu");
 		} catch (GameOverException e) {
-			e.printStackTrace();
-			System.out.println("MÄNG LÄBI!");
+			endGame(timer, player, "Mäng läbi");
 		}
+	}
+
+	private static void endGame(Timer timer, Player player, String endMessage) {
+		timer.cancel();
+		System.out.println(endMessage);
+		player.showKilledEnemies();
+		System.out.println("Sul läks " + GameController.getSeconds() + " sekundit aega");
 	}
 }

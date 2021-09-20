@@ -13,6 +13,8 @@ public class Enemy extends Character {
 
     private void setEnemyHealthByType() {
         this.health = determineType();
+        System.out.println(determineType());
+        System.out.println(this.health);
     }
 
     public int getEnemyStrength() {
@@ -43,8 +45,11 @@ public class Enemy extends Character {
     }
 
     public void randomEnemyCoordinates(World world) {
+        this.enemyType = EnemyType.getRandomEnemyType();
         randomiseCoordinates(world);
     }
 
-
+    public void reboost() {
+        setEnemyHealthByType();
+    }
 }

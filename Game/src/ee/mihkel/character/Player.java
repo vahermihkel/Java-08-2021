@@ -27,12 +27,13 @@ import java.util.Map;
 
 public class Player extends Character {
     private Direction direction;
-    private List<Item> itemList = new ArrayList<>(); // [ese1,ese2,ese3]
-    private Map<EnemyType, Integer> killedEnemies = new HashMap<>(); // [{võti:nr},{võti2:nr},{võti3:nr}]
+    private final List<Item> itemList = new ArrayList<>(); // [ese1,ese2,ese3]
+    private final Map<EnemyType, Integer> killedEnemies = new HashMap<>(); // [{võti:nr},{võti2:nr},{võti3:nr}]
 
     public Player(World world) {
         super(world, 'X');
         this.direction = Direction.UP;
+        health = 10.0;
     }
 
     public void addItem(Item item) {
@@ -130,7 +131,14 @@ public class Player extends Character {
     }
 
     public void addToKilledEnemies(EnemyType enemyType) {
-        this.killedEnemies.put(enemyType,1);
+        if (killedEnemies.containsKey(enemyType)) {
+            killedEnemies.put(enemyType, killedEnemies.get(enemyType)+1);
+        } else {
+            this.killedEnemies.put(enemyType,1);
+        }
     }
 
+    public void randomPlayerCoordinates(World world) {
+        randomiseCoordinates(world);
+    }
 }
