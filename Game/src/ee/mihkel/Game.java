@@ -78,5 +78,7 @@ public class Game {
 		System.out.println(endMessage);
 		player.showKilledEnemies();
 		System.out.println("Sul läks " + GameController.getSeconds() + " sekundit aega");
+		System.out.println("Sa kogusid kokku " + Item.getTotalStrength() + " punkti");
+		System.out.println("Sinu lõplik skoor on " + String.format("%.2f",(double)Item.getTotalStrength()/GameController.getSeconds()*100));
 	}
 }

@@ -13,6 +13,7 @@ public abstract class Item {
     private final String name;
     private ItemType itemType = ItemType.BRONZE;
     private int level;
+    private static int totalStrength;
 
     public Item(World world, int strength, String name, char symbol) {
         this.xCoord = this.getRandomCoordinate(world.getWidth()-2);
@@ -106,5 +107,13 @@ public abstract class Item {
 
     public String getName() {
         return name;
+    }
+
+    public static int getTotalStrength() {
+        return totalStrength;
+    }
+
+    public static void addToTotalStrength(int totalStrength) {
+        Item.totalStrength += totalStrength;
     }
 }

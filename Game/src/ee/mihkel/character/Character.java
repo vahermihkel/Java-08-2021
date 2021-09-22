@@ -91,7 +91,7 @@ public abstract class Character {
         this.health -= itemStrength;
     }
 
-    public void reboost() {
+    protected void reboost() {
         this.health = 10.0;
     }
 }

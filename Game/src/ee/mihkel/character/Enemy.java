@@ -45,11 +45,9 @@ public class Enemy extends Character {
     }
 
     public void randomEnemyCoordinates(World world) {
+        setVisible(true);
         this.enemyType = EnemyType.getRandomEnemyType();
         randomiseCoordinates(world);
-    }
-
-    public void reboost() {
         setEnemyHealthByType();
     }
 }

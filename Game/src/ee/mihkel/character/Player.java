@@ -141,4 +141,8 @@ public class Player extends Character {
     public void randomPlayerCoordinates(World world) {
         randomiseCoordinates(world);
     }
+
+    public void reboost() {
+        health = 10;
+    }
 }

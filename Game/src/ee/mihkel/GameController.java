@@ -32,7 +32,7 @@ public class GameController {
         GameController.checkIfPlayerAndHealerMet(world, player, healer);
     }
 
-    protected static void checkIfPlayerAndEnemyMet(Player player,
+    private static void checkIfPlayerAndEnemyMet(Player player,
                                                    Enemy enemy,
                                                    Scanner scanner,
                                                    World world) throws GameOverException {
@@ -45,7 +45,7 @@ public class GameController {
         }
     }
 
-    protected static void chooseWeapon(Player player,
+    private static void chooseWeapon(Player player,
                                        Enemy enemy,
                                        Scanner scanner,
                                        World world) throws GameOverException {
@@ -72,7 +72,7 @@ public class GameController {
         }
     }
 
-    protected static void startFight(Player player, Enemy enemy, Scanner scanner, Item item) throws GameOverException {
+    private static void startFight(Player player, Enemy enemy, Scanner scanner, Item item) throws GameOverException {
         String input;
         System.out.println("Valisid eseme: " + item.getName());
         player.useItem(item);
@@ -92,12 +92,13 @@ public class GameController {
         if (enemy.getHealth() <= 0) {
             enemy.setVisible(false);
             player.addToKilledEnemies(enemy.getEnemyType());
+            Item.addToTotalStrength(enemy.getEnemyStrength());
         } else if (player.getHealth() <= 0) {
             throw new GameOverException();
         }
     }
 
-    protected static void fightWithEnemy(Player player,
+    private static void fightWithEnemy(Player player,
                                          Enemy enemy,
                                          String input,
                                          Item item,
@@ -115,20 +116,18 @@ public class GameController {
         }
     }
 
-    protected static void checkIfPlayerTakesItem(Item item, Player player) {
+    private static void checkIfPlayerTakesItem(Item item, Player player) {
         if (item.getxCoord() == player.getxCoord() && item.getyCoord() == player.getyCoord()) {
             player.addItem(item);
         }
     }
 
-    protected static void checkIfPlayerAndQuestMasterMet(World world,
+    private static void checkIfPlayerAndQuestMasterMet(World world,
                                                          Player player,
                                                          Enemy enemy,
                                                          QuestMaster questMaster) {
         if (player.getxCoord() == questMaster.getxCoord() && player.getyCoord() == questMaster.getyCoord()) {
-            enemy.setVisible(true);
             enemy.randomEnemyCoordinates(world);
-            enemy.reboost();
             questMaster.setVisible(false);
         } else if (!questMaster.isVisible()) {
             questMaster.setVisible(true);
@@ -145,11 +144,11 @@ public class GameController {
 
     private static int seconds;
 
-    public static int getSeconds() {
+    protected static int getSeconds() {
         return seconds;
     }
 
-    public static void startTimer(Timer timer) {
+    protected static void startTimer(Timer timer) {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
