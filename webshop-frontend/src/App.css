@@ -5,4 +5,15 @@
 .navbar {
   background-color: azure;
   height: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 140px;
+}
+
+.cart-button {
+  height: 70px;
+  margin: 30px;
 }

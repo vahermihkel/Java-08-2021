@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './components/Navbar'
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import AddItem from './pages/AddItem';
 import {Route} from 'react-router-dom';
 
 function AppComponent() {
@@ -15,7 +16,7 @@ function AppComponent() {
         <Cart />
       </Route>
       <Route path="/lisa-ese">
-        <div>Siia tuleb add-item mis pole veel valmis</div>
+        <AddItem />
       </Route>
     </div>
   );

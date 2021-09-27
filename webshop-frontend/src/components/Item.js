@@ -3,7 +3,8 @@ function Item(props) {
         <div>{props.name}</div>
         <div>{props.price}</div>
         <div>{props.category}</div>
-        <br></br>
+        <button>Lisa ostukorvi</button>
+        <br /><br />
         </div>)
 }
 
