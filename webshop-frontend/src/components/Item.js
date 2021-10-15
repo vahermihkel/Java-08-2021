@@ -20,7 +20,7 @@ function Item(props) {
     // toimub buttonile click ja see paneb käima handleDelete funktsiooni ja saadab kaasa
     // props.id
     // props.id tuleb tegelikult Itemlistist
-    return(<div>
+    return(<div className="item">
         <Link to={`view/${props.id}`}>   
             <div>{props.name}</div>
             <div>{props.price}</div>
@@ -37,7 +37,7 @@ function Item(props) {
                 </div>
         }
        
-        <br /><br />
+     
         </div>)
 }
 

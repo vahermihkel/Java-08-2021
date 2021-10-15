@@ -24,7 +24,7 @@ function ItemList(props) {
 
     // deleteItemisse tuli käimapanek props.deleteItem kaudu ja pane käima
     // onDelete
-    return (<div>
+    return (<div className="item-list">
         {props.items.map(element=> (
             <Item 
                 isAddToCartButton={props.isAddToCart}
