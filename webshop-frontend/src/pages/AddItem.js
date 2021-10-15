@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 function AddItem() {
     const nameInputRef = useRef();
@@ -12,12 +13,27 @@ function AddItem() {
         const priceValue = priceInputRef.current.value;
         const categoryValue = categoryInputRef.current.value;
 
-        console.log(nameValue);
-        console.log(priceValue);
-        console.log(categoryValue);
+        const item = {
+                        name: nameValue, 
+                        price: priceValue, 
+                        category: categoryValue
+                    }
+
+        fetch('http://localhost:8080/add-item',
+                {
+                    method: 'POST',
+                    body: JSON.stringify(item),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            )
     }
 
     return(<div>
+        <Link to="admin">
+            <button>Tagasi</button>
+        </Link>
         <h1>Lisa uus ese</h1>
         <form onSubmit={onSubmitItem}>
             <label>Pealkiri</label><br/>
